@@ -1,31 +1,25 @@
 <?php
 
-namespace App\Models;
+namespace App\System;
 
 use PDO;
 use PDOException;
 
-trait BaseModel
+class Database
 {
     private static $dbh;
     private static $stmt;
 
-    public static function Database($option = [
-        "host" => "localhost",
-        "port" => "3306",
-        "username" => "root",
-        "password" => "",
-        "dbname" => "dbname"
-    ])
+    public static function Database()
     {
-        $dsn = "mysql:host=" . $option["host"] . ";dbname=" . $option["dbname"];
+        $dsn = $_ENV["DB_TYPE"] . ":host=" . $_ENV["DB_HOST"] . ";dbname=" . $_ENV["DB_NAME"];
         $opt = [
             PDO::ATTR_PERSISTENT => true,
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
         ];
 
         try {
-            self::$dbh = new PDO($dsn, $option["username"], $option["password"], $opt);
+            self::$dbh = new PDO($dsn, $_ENV["DB_USER"], $_ENV["DB_PASS"], $opt);
         } catch (PDOException $e) {
             die($e->getMessage());
         }

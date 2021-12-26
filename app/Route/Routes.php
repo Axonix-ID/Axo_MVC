@@ -1,22 +1,22 @@
 <?php
 
+use App\System\View;
 use App\System\Route;
+use App\System\Env;
 
 /**
  * | Routing system
  * 
  * | example :
  * | $route->add('/URL', function() {}, 'GET');
- * 
- * | Parameters 1 => $uri | Types : string | Examples : '/'
- * | Parameters 2 => $callback | Types : Closure | Examples : 'function() {}'
- * | Parameters 3 => $method | Types : String | Examples : 'GET' or 'POST' or 'PUT' or 'PATCH' or 'DELETE', 'HEAD'
  */
 
 $route = new Route();
 
 $route->add("/", function () {
-    return Route::render("index");
+    View::render("index", [
+        "axo" => Env::get("AXO_ENV")
+    ]);
 }, "get");
 
 $route->run();

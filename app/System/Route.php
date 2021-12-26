@@ -2,6 +2,8 @@
 
 namespace App\System;
 
+use App\System\View;
+
 class Route
 {
     public $route = [];
@@ -35,7 +37,7 @@ class Route
 
 
         if ($callback === null) {
-            self::render("error/404", [
+            View::render("error/404", [
                 "code" => 404,
                 "uri" => $U,
                 "method" => $_SERVER["REQUEST_METHOD"]
@@ -45,18 +47,5 @@ class Route
         } else {
             echo call_user_func($callback, ...$params);
         }
-    }
-
-    static function render($file, array $data = null)
-    {
-        if ($data != null) extract($data);
-
-        ob_start();
-
-        $render = function ($file) {
-            require_once __DIR__ . "/../../public/Views/$file";
-        };
-
-        require_once __DIR__ . "/../../public/Views/$file.php";
     }
 }

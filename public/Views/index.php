@@ -12,6 +12,11 @@
 </head>
 
 <body>
+    <h2 class="text-center">
+        Time (Jakarta) : <?php date_default_timezone_set("Asia/Jakarta");
+                            echo date("H:i"); ?>
+    </h2>
+
     <div class="container mt-5">
         <h2>Welcome to your application</h2>
         <hr>
@@ -20,6 +25,16 @@
         <p class="mb-3" id='txt'></p>
 
         <button class="btn btn-primary" id="click">Click!</button>
+    </div>
+
+    <div class="fixed-bottom w-100 bg-light d-flex justify-content-center align-items-center" style="height: 100px;">
+        <?php if ($axo === "development") : ?>
+            <h4>Development</h4>
+        <?php elseif ($axo === "production") : ?>
+            <h4>Production</h4>
+        <?php elseif ($axo === "test") : ?>
+            <h4>Testing</h4>
+        <?php endif; ?>
     </div>
 
     <script>
