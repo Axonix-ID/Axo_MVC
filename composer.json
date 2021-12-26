@@ -1,0 +1,16 @@
+{
+    "name": "axonix/axo_mvc",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Axonix-ID",
+            "email": "96225600+Axonix-ID@users.noreply.github.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "./app"
+        }
+    }
+}

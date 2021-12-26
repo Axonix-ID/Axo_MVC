@@ -1,0 +1,21 @@
+<?php
+
+$green = "\033[1;32m";
+$gree = "\033[1;36m";
+$reset = "\033[1;37m";
+
+$port = $argv[1] ?? 8888;
+$host = "localhost";
+
+if (is_string($port)) {
+    echo "\033[1;31m> Error :\033[1;30m True\n$reset";
+    echo "\033[1;31m> Message :\033[1;30m 'The port cant be a string!'\n$reset";
+    exit;
+}
+
+date_default_timezone_set("Asia/Jakarta");
+echo $green . "                Started IzyanzZ_MVC Server\n$reset";
+echo "--------------------------------------------------------------------";
+echo  "\n$gree> Time: $reset" . date("D - m - Y") . "\n$reset>> Server information : \n$gree> Port : $reset$port\n$gree> Host : $reset$host\n$gree> Url :$reset http://$host:$port\n" . $reset;
+echo "--------------------------------------------------------------------\n";
+passthru("php -S $host:$port public/index.php");
